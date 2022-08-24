@@ -7,7 +7,7 @@
 		getgenv().library:Unload()
 	end
 
-	local library = {design = getgenv().design == "kali" and "kali" or "uwuware", tabs = {}, draggable = true, flags = {}, title = "Amaterasu Hub", open = false, mousestate = inputService.MouseIconEnabled, popup = nil, instances = {}, connections = {}, options = {}, notifications = {}, tabSize = 0, theme = {}, foldername = "uw_configs", fileext = ".uw"}
+	local library = {design = getgenv().design == "kali" and "kali" or "uwuware", tabs = {}, draggable = true, flags = {}, title = "Amaterasu Hub", open = false, mousestate = inputService.MouseIconEnabled, popup = nil, instances = {}, connections = {}, options = {}, notifications = {}, tabSize = 0, theme = {}, foldername = "ama_configs", fileext = ".uw"}
 	getgenv().library = library
 
 	--Locals
@@ -2721,14 +2721,6 @@
 		["Flowers"] = 6071575925,
 		["Circles"] = 6071579801,
 		["Hearts"] = 6073763717,
-		["Polka dots"] = 6214418014,
-		["Mountains"] = 6214412460,
-		["Zigzag"] = 6214416834,
-		["Zigzag 2"] = 6214375242,
-		["Tartan"] = 6214404863,
-		["Roses"] = 6214374619,
-		["Hexagons"] = 6214320051,
-		["Leopard print"] = 6214318622
 	}
 	library.SettingsMenu:AddList({text = "Background", flag = "UI Background", max = 6, values = {"Floral", "Flowers", "Circles", "Hearts", "Polka dots", "Mountains", "Zigzag", "Zigzag 2", "Tartan", "Roses", "Hexagons", "Leopard print"}, callback = function(Value)
 		if Backgrounds[Value] then
