@@ -9,6 +9,38 @@ local CoreGuiService = game:GetService("CoreGui")
 local ContentService = game:GetService("ContentProvider")
 
 local Themes = {
+    Monke = {
+        MainFrame = Color3.fromRGB(25, 25, 25),
+        Minimise = Color3.fromRGB(68, 208, 255),
+        MinimiseAccent = Color3.fromRGB(3, 188, 182),
+        Maximise = Color3.fromRGB(25,255,0),
+        MaximiseAccent = Color3.fromRGB(0,255,110),
+        NavBar = Color3.fromRGB(25,25,25),
+        NavBarAccent = Color3.fromRGB(255,255,255),
+        NavBarInvert = Color3.fromRGB(25,25,25),
+        TitleBar = Color3.fromRGB(30, 30, 30),
+        TitleBarAccent = Color3.fromRGB(255,255,255),
+        Overlay = Color3.fromRGB(30, 30, 30),
+        Banner = Color3.fromRGB(30, 30, 30),
+        BannerAccent = Color3.fromRGB(255,255,255),
+        Content = Color3.fromRGB(85,85,85),
+        Button = Color3.fromRGB(40, 40, 40),
+        ButtonAccent = Color3.fromRGB(235, 235, 235),
+        ChipSet = Color3.fromRGB(170, 170, 170),
+        ChipSetAccent = Color3.fromRGB(100,100,100),
+        DataTable = Color3.fromRGB(160,160,160),
+        DataTableAccent = Color3.fromRGB(45,45,45),
+        Slider = Color3.fromRGB(45,45,45),
+        SliderAccent = Color3.fromRGB(235,235,235),
+        Toggle = Color3.fromRGB(40, 40, 40),
+        ToggleAccent = Color3.fromRGB(235, 235, 235),
+        Dropdown = Color3.fromRGB(45, 45, 45),
+        DropdownAccent = Color3.fromRGB(235,235,235),
+        ColorPicker = Color3.fromRGB(10, 10, 10),
+        ColorPickerAccent = Color3.fromRGB(235,235,235),
+        TextField = Color3.fromRGB(55,55,55),
+        TextFieldAccent = Color3.fromRGB(235,235,235),
+    },
 	Light = {
 		MainFrame = Color3.fromRGB(255,255,255),
 		Minimise = Color3.fromRGB(255,106,0),
@@ -2083,7 +2115,7 @@ function Material.Load(Config)
 			ToggleTracker.Size = UDim2.fromOffset(26,12)
 			ToggleTracker.Position = UDim2.fromScale(1,0.5) - UDim2.fromOffset(41,6)
 			ToggleTracker.ImageColor3 = Theme.Toggle
-			ToggleTracker.ImageTransparency = 1
+			ToggleTracker.ImageTransparency = 0
 			ToggleTracker.Parent = Toggle
 
 			local Dot = Objects.new("Circle")
@@ -2100,7 +2132,7 @@ function Material.Load(Config)
 			DotShadow.ScaleType = Enum.ScaleType.Stretch
 			DotShadow.Size = UDim2.fromOffset(31,31)
 			DotShadow.Position = UDim2.fromOffset(-8,-8)
-			DotShadow.ImageColor3 = Theme.Toggle
+			DotShadow.ImageColor3 = Color3.fromRGB(25,255,0)
 			DotShadow.ImageTransparency = 1
 			DotShadow.Parent = Dot
 
@@ -2108,7 +2140,7 @@ function Material.Load(Config)
 			ToggleLabel.Font = Enum.Font.GothamSemibold
 			ToggleLabel.TextSize = 14
 			ToggleLabel.Text = ToggleText
-			ToggleLabel.TextColor3 = Theme.Toggle
+			ToggleLabel.TextColor3 = Color3.fromRGB(255,255,255)
 			ToggleLabel.TextTransparency = 1
 			ToggleLabel.ClipsDescendants = true
 			ToggleLabel.Parent = Toggle
