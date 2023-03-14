@@ -1,6 +1,6 @@
 -- // Load
 
-local startupArgs = ({...})[1] or {cheatname = 'ouwHack', gamename = 'ouw#7809'}
+local startupArgs = ({...})[1] or {cheatname = '', gamename = ''}
 
 if getgenv().library ~= nil then
     getgenv().library:Unload();
