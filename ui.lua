@@ -1095,6 +1095,21 @@ function utility.rgba(r, g, b, alpha)
 end
 
 local themes = {
+    Default = {
+        ["Accent"] = Color3.fromRGB(255,255,255),
+        ["Window Background"] = Color3.fromRGB(41, 41, 41),
+        ["Window Border"] = Color3.fromRGB(255, 255, 255),
+        ["Tab Background"] = Color3.fromRGB(34, 34, 34),
+        ["Tab Border"] = Color3.fromRGB(255, 255, 255),
+        ["Tab Toggle Background"] = Color3.fromRGB(92, 92, 92),
+        ["Section Background"] = Color3.fromRGB(0, 0, 0),
+        ["Section Border"] = Color3.fromRGB(0, 203, 255),
+        ["Text"] = Color3.fromRGB(255, 255, 255),
+        ["Disabled Text"] = Color3.fromRGB(0, 187, 255),
+        ["Object Background"] = Color3.fromRGB(41, 41, 41),
+        ["Object Border"] = Color3.fromRGB(85, 85, 85),
+        ["Dropdown Option Background"] = Color3.fromRGB(255, 255, 255)
+    },
     Midnight = {
         ["Accent"] = Color3.fromRGB(100, 59, 154),
         ["Window Background"] = Color3.fromRGB(30, 30, 36),
@@ -1143,7 +1158,7 @@ local themes = {
 }
 local themeobjects = {}
 
-local library = utility.table({theme = table.clone(themes.WhiteAndBlue), folder = "vozoiduilib", extension = "vozoid", flags = {}, open = true, keybind = Enum.KeyCode.RightShift, mousestate = services.InputService.MouseIconEnabled, cursor = nil, holder = nil, connections = {}}, true)
+local library = utility.table({theme = table.clone(themes.Default), folder = "vozoiduilib", extension = "vozoid", flags = {}, open = true, keybind = Enum.KeyCode.RightShift, mousestate = services.InputService.MouseIconEnabled, cursor = nil, holder = nil, connections = {}}, true)
 local decode = (syn and syn.crypt.base64.decode) or (crypt and crypt.base64decode) or base64_decode
 library.gradient = decode("iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABuSURBVChTxY9BDoAgDASLGD2ReOYNPsR/+BAfroI7hibe9OYmky2wbUPIOdsXdc1f9WMwppQm+SDGBnUvomAQBH49qzhFEag25869ElzaIXDhD4JGbyoEVxUedN8FKwnfmwhucgKICc+pNB1mZhdCdhsa2ky0FAAAAABJRU5ErkJggg==")
 library.utility = utility
