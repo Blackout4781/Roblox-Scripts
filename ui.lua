@@ -1399,7 +1399,7 @@ function library:SetTheme(theme)
 end
 
 function library:GetThemes()
-    local themes = {"Midnight","WhiteAndBlack","WhiteAndBlue"}
+    local themes = {"Default","Midnight","WhiteAndBlack","WhiteAndBlue"}
 
     local folderpath = string.format("%s//themes", self.folder)
 
