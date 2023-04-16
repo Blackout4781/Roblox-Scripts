@@ -1126,8 +1126,22 @@ local themes = {
         ["Object Border"] = Color3.fromRGB(35, 35, 39),
         ["Dropdown Option Background"] = Color3.fromRGB(19, 19, 23)
     }
+     WhiteAndBlack = {
+        ["Accent"] = Color3.fromRGB(255,255,255),
+        ["Window Background"] = Color3.fromRGB(0, 0, 0),
+        ["Window Border"] = Color3.fromRGB(255, 255, 255),
+        ["Tab Background"] = Color3.fromRGB(23, 23, 23),
+        ["Tab Border"] = Color3.fromRGB(176, 176, 176),
+        ["Tab Toggle Background"] = Color3.fromRGB(143, 143, 143),
+        ["Section Background"] = Color3.fromRGB(44, 44, 44	),
+        ["Section Border"] = Color3.fromRGB(0, 0, 0),
+        ["Text"] = Color3.fromRGB(220, 220, 220),
+        ["Disabled Text"] = Color3.fromRGB(197, 197, 197),
+        ["Object Background"] = Color3.fromRGB(39, 39, 39),
+        ["Object Border"] = Color3.fromRGB(0, 0, 0),
+        ["Dropdown Option Background"] = Color3.fromRGB(0, 0, 0)
+    }
 }
-
 local themeobjects = {}
 
 local library = utility.table({theme = table.clone(themes.Default), folder = "vozoiduilib", extension = "vozoid", flags = {}, open = true, keybind = Enum.KeyCode.RightShift, mousestate = services.InputService.MouseIconEnabled, cursor = nil, holder = nil, connections = {}}, true)
@@ -1371,7 +1385,7 @@ function library:SetTheme(theme)
 end
 
 function library:GetThemes()
-    local themes = {"Default", "Midnight"}
+    local themes = {"Default", "Midnight","WhiteAndBlack"}
 
     local folderpath = string.format("%s//themes", self.folder)
 
