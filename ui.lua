@@ -1095,22 +1095,6 @@ function utility.rgba(r, g, b, alpha)
 end
 
 local themes = {
-    Default = {
-        ["Accent"] = Color3.fromRGB(113, 93, 133),
-        ["Window Background"] = Color3.fromRGB(30, 30, 30),
-        ["Window Border"] = Color3.fromRGB(45, 45, 45),
-        ["Tab Background"] = Color3.fromRGB(20, 20, 20),
-        ["Tab Border"] = Color3.fromRGB(45, 45, 45),
-        ["Tab Toggle Background"] = Color3.fromRGB(28, 28, 28),
-        ["Section Background"] = Color3.fromRGB(18, 18, 18),
-        ["Section Border"] = Color3.fromRGB(35, 35, 35),
-        ["Text"] = Color3.fromRGB(200, 200, 200),
-        ["Disabled Text"] = Color3.fromRGB(110, 110, 110),
-        ["Object Background"] = Color3.fromRGB(25, 25, 25),
-        ["Object Border"] = Color3.fromRGB(35, 35, 35),
-        ["Dropdown Option Background"] = Color3.fromRGB(19, 19, 19)
-    },
-
     Midnight = {
         ["Accent"] = Color3.fromRGB(100, 59, 154),
         ["Window Background"] = Color3.fromRGB(30, 30, 36),
@@ -1140,7 +1124,22 @@ local themes = {
         ["Object Background"] = Color3.fromRGB(39, 39, 39),
         ["Object Border"] = Color3.fromRGB(0, 0, 0),
         ["Dropdown Option Background"] = Color3.fromRGB(0, 0, 0)
-    }
+    },
+    WhiteAndBlue = {
+        ["Accent"] = Color3.fromRGB(255,255,255),
+        ["Window Background"] = Color3.fromRGB(41, 41, 41),
+        ["Window Border"] = Color3.fromRGB(255, 255, 255),
+        ["Tab Background"] = Color3.fromRGB(34, 34, 34),
+        ["Tab Border"] = Color3.fromRGB(255, 255, 255),
+        ["Tab Toggle Background"] = Color3.fromRGB(92, 92, 92),
+        ["Section Background"] = Color3.fromRGB(0, 0, 0),
+        ["Section Border"] = Color3.fromRGB(0, 203, 255),
+        ["Text"] = Color3.fromRGB(255, 255, 255),
+        ["Disabled Text"] = Color3.fromRGB(0, 187, 255),
+        ["Object Background"] = Color3.fromRGB(41, 41, 41),
+        ["Object Border"] = Color3.fromRGB(85, 85, 85),
+        ["Dropdown Option Background"] = Color3.fromRGB(255, 255, 255)
+    },
 }
 local themeobjects = {}
 
@@ -1385,7 +1384,7 @@ function library:SetTheme(theme)
 end
 
 function library:GetThemes()
-    local themes = {"Default", "Midnight","WhiteAndBlack"}
+    local themes = {"Midnight","WhiteAndBlack","WhiteAndBlue"}
 
     local folderpath = string.format("%s//themes", self.folder)
 
