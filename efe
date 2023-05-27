@@ -13,3 +13,14 @@
         end 
         return oldmt(self, ...)
     end)
+
+if game.ReplicatedStorage:FindFirstChild("Remotes"):FindFirstChild("getclientping") then 
+    game.ReplicatedStorage:FindFirstChild("Remotes"):FindFirstChild("getclientping").OnClientInvoke = function() 
+        task.wait(5)
+        return true 
+    end 
+end 
+
+
+setfflag("HumanoidParallelRemoveNoPhysics", "False")
+setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
