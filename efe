@@ -20,7 +20,3 @@ if game.ReplicatedStorage:FindFirstChild("Remotes"):FindFirstChild("getclientpin
         return true 
     end 
 end 
-
-
-setfflag("HumanoidParallelRemoveNoPhysics", "False")
-setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
