@@ -20,3 +20,45 @@ if game.ReplicatedStorage:FindFirstChild("Remotes"):FindFirstChild("getclientpin
         return true 
     end 
 end 
+
+
+--// Anti Rspy \\--
+    x = hookfunction(hookfunction, function(...)
+        local args = {...}
+        local first = getinfo(args[1]).name 
+        
+        if first == 'FireServer' or first == 'InvokeServer' then 
+            while true do end
+        end
+        
+        return x(...) 
+    end)
+    
+    other = hookfunction(Instance.new, function(...)
+        local args = {...}
+        
+        if checkcaller() and tostring(args[1]) == 'IntValue' then
+            while true do end
+        end
+    
+        return other(...) 
+    end)
+    
+    for i,v in pairs(getgc(true)) do 
+        if type(v) == 'table' and rawget(v, 'new') and rawget(v, 'decrementCalls') and rawget(v, 'clear') then 
+            local constants = getconstants(v.new)
+            
+            if table.find(constants, 'blockArg') and table.find(constants, 'Instance') then 
+                the_table = v 
+                break
+            end
+        end
+    end
+    
+    if the_table then 
+        faggot = hookfunction(the_table.incrementCalls, function(...)
+            while true do end
+    
+            return faggot(...)
+        end)
+    end
