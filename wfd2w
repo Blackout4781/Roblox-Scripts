@@ -1,3 +1,4 @@
+
 --[[ Pepsi's UI Library
 Better and updated web-based docs are planned in distant future.
 Library v0.36 [
@@ -477,7 +478,7 @@ local library = {
 		easingDirection = Enum.EasingDirection.Out
 	},
 	colors = {
-		main = #350BFF,
+		main = Color3.fromRGB(53, 11, 255),
 		background = Color3.fromRGB(53, 11, 255),
 		outerBorder = Color3.fromRGB(20, 8, 251),
 		innerBorder = Color3.fromRGB(9, 28, 253),
