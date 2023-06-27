@@ -478,11 +478,11 @@ local library = {
 		easingDirection = Enum.EasingDirection.Out
 	},
 	colors = {
-		main = Color3.fromRGB(236, 17, 41),
+		main = Color3.fromRGB(12, 152, 255),
 		background = Color3.fromRGB(0, 0, 0),
 		outerBorder = Color3.fromRGB(20, 8, 251),
 		innerBorder = Color3.fromRGB(9, 28, 253),
-		topGradient = Color3.fromRGB(205, 187, 187),
+		topGradient = Color3.fromRGB(0, 0, 0),
 		bottomGradient = Color3.fromRGB(19, 35, 226),
 		sectionBackground = Color3.fromRGB(35, 34, 34),
 		section = Color3.fromRGB(176, 175, 176),
