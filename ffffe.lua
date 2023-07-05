@@ -34,7 +34,7 @@ Default = {
  
     TabBackground = Color3.fromRGB(3, 8, 11),
     TabStroke = Color3.fromRGB(112, 112, 112),
-    TabBackgroundSelected = Color3.fromRGB(0, 142, 208),
+    TabBackgroundSelected = Color3.fromRGB(144, 19, 228),
     TabTextColor = Color3.fromRGB(240, 240, 240),
     SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
  
