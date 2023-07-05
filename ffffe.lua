@@ -11,7 +11,7 @@
 
         ]]
 
-        local Release = "Rayfield Edited"
+        local Release = "Rafa Edition"
         local NotificationDuration = 6.5
         local RayfieldFolder = "Rayfield"
         local ConfigurationFolder = RayfieldFolder.."/Configurations"
@@ -26,15 +26,15 @@ Default = {
     TextColor = Color3.fromRGB(240, 240, 240), -- i need to make all text 240, 240, 240 and base gray on transparency not color to do this
  
     Background = Color3.fromRGB(25, 25, 25),
-    Topbar = Color3.fromRGB(132, 21, 160),
-    Shadow = Color3.fromRGB(166, 10, 238),
+    Topbar = Color3.fromRGB(7, 11, 62),
+    Shadow = Color3.fromRGB(25, 10, 160),
  
     NotificationBackground = Color3.fromRGB(20, 20, 20),
     NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
  
     TabBackground = Color3.fromRGB(3, 8, 11),
     TabStroke = Color3.fromRGB(112, 112, 112),
-    TabBackgroundSelected = Color3.fromRGB(144, 19, 228),
+    TabBackgroundSelected = Color3.fromRGB(0, 142, 208),
     TabTextColor = Color3.fromRGB(240, 240, 240),
     SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
  
@@ -53,8 +53,8 @@ Default = {
     ToggleDisabled = Color3.fromRGB(195, 52, 52),
     ToggleEnabledStroke = Color3.fromRGB(74, 123, 84),
     ToggleDisabledStroke = Color3.fromRGB(90, 32, 32),
-    ToggleEnabledOuterStroke = Color3.fromRGB(169, 8, 243),
-    ToggleDisabledOuterStroke = Color3.fromRGB(169, 8, 243),
+    ToggleEnabledOuterStroke = Color3.fromRGB(25, 10, 160),
+    ToggleDisabledOuterStroke = Color3.fromRGB(25, 10, 160),
  
     InputBackground = Color3.fromRGB(30, 30, 30),
     InputStroke = Color3.fromRGB(65, 65, 65),
@@ -2151,15 +2151,8 @@ Default = {
 
                         DropdownOption.Interact.ZIndex = 50
                         DropdownOption.Interact.MouseButton1Click:Connect(function()
-                        function IsTable()
-							if type(DropdownSettings.CurrentOption) == "table" then
-								return true
-								else
-								DropdownSettings.CurrentOption = {DropdownSettings.CurrentOption}
-							end
-                        end
-							
-                            if (DropdownSettings.Multi and IsTable() and not table.find(DropdownSettings.CurrentOption, Option)) or (not DropdownSettings.Multi and DropdownSettings.CurrentOption ~= Option) then
+
+                            if (DropdownSettings.Multi and not table.find(DropdownSettings.CurrentOption, Option)) or (not DropdownSettings.Multi and DropdownSettings.CurrentOption ~= Option) then
                                 if DropdownSettings.Multi then
                                     table.insert(DropdownSettings.CurrentOption, Option)
                                     Dropdown.Selected.Text = table.concat(DropdownSettings.CurrentOption, ", ")
