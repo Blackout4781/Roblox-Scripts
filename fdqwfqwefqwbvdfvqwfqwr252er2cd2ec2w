@@ -118,6 +118,7 @@ local startup_args = ({...})[1] or {}
 if library ~= nil then
     library:unload()
 end
+local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
 local themes = {
     ['default'] = {
@@ -306,7 +307,7 @@ do
 
     if not startup_args.ignoreui then
         library.screengui = Instance.new('ScreenGui')
-        syn.protect_gui(library.screengui)
+        ProtectGui(library.screengui)
         library.screengui.Parent = game:GetService('CoreGui')
 
         local button = Instance.new('ImageButton')
