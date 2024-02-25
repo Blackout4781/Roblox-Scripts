@@ -4,15 +4,15 @@ SX_VM_CNONE();
 
 local libraryLoadAt = tick();
 
-local Signal = sharedRequire('utils/Signal.lua');
-local Services = sharedRequire('utils/Services.lua');
-local KeyBindVisualizer = sharedRequire('classes/KeyBindVisualizer.lua');
+local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/efe"))()
+local Services = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/Service"))()
+local KeyBindVisualizer = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/untitled%20boxing%20game"))()
 
 local CoreGui, Players, RunService, TextService, UserInputService, ContentProvider, HttpService, TweenService, GuiService, TeleportService = Services:Get('CoreGui', 'Players', 'RunService', 'TextService', 'UserInputService', 'ContentProvider', 'HttpService', 'TweenService', 'GuiService', 'TeleportService');
 
-local toCamelCase = sharedRequire('utils/toCamelCase.lua');
-local Maid = sharedRequire('utils/Maid.lua');
-local ToastNotif = sharedRequire('@classes/ToastNotif.lua');
+local toCamelCase = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/fgf.lua"))();
+local Maid = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/wfd2w.lua"))()
+local ToastNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/h"))()
 
 local LocalPlayer = Players.LocalPlayer;
 local visualizer;
