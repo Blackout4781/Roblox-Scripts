@@ -1,4 +1,4 @@
-SX_VM_CNONE();
+
 local Services = {};
 local vim = getvirtualinputmanager and getvirtualinputmanager();
 
