@@ -1,4 +1,3 @@
-SX_VM_CNONE();
 
 -- // Services
 
