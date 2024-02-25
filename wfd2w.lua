@@ -1,77 +1,131 @@
+SX_VM_CNONE();
+---	Manages the cleaning of events and other things.
+-- Useful for encapsulating state and make deconstructors easy
+-- @classmod Maid
+-- @see Signal
 
---- Lua-side duplication of the API of events on Roblox objects.
--- Signals are needed for to ensure that for local events objects are passed by
--- reference rather than by value where possible, as the BindableEvent objects
--- always pass signal arguments by value, meaning tables will be deep copied.
--- Roblox's deep copy method parses to a non-lua table compatable format.
--- @classmod Signal
+local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/efe"))()
+local tableStr = getServerConstant('table');
+local classNameStr = getServerConstant('Maid');
+local funcStr = getServerConstant('function');
+local threadStr = getServerConstant('thread');
 
-local Signal = {}
-Signal.__index = Signal
-Signal.ClassName = "Signal"
+local Maid = {}
+Maid.ClassName = "Maid"
 
---- Constructs a new signal.
--- @constructor Signal.new()
--- @treturn Signal
-function Signal.new()
-	local self = setmetatable({}, Signal)
-
-	self._bindableEvent = Instance.new("BindableEvent")
-	self._argData = nil
-	self._argCount = nil -- Prevent edge case of :Fire("A", nil) --> "A" instead of "A", nil
-
-	return self
+--- Returns a new Maid object
+-- @constructor Maid.new()
+-- @treturn Maid
+function Maid.new()
+	return setmetatable({
+		_tasks = {}
+	}, Maid)
 end
 
-function Signal.isSignal(object)
-	return typeof(object) == 'table' and getmetatable(object) == Signal;
-end;
-
---- Fire the event with the given arguments. All handlers will be invoked. Handlers follow
--- Roblox signal conventions.
--- @param ... Variable arguments to pass to handler
--- @treturn nil
-function Signal:Fire(...)
-	self._argData = {...}
-	self._argCount = select("#", ...)
-	self._bindableEvent:Fire()
-	self._argData = nil
-	self._argCount = nil
+function Maid.isMaid(value)
+	return type(value) == tableStr and value.ClassName == classNameStr
 end
 
---- Connect a new handler to the event. Returns a connection object that can be disconnected.
--- @tparam function handler Function handler called with arguments passed when `:Fire(...)` is called
--- @treturn Connection Connection object that can be disconnected
-function Signal:Connect(handler)
-	if not self._bindableEvent then return error("Signal has been destroyed"); end --Fixes an error while respawning with the UI injected
+--- Returns Maid[key] if not part of Maid metatable
+-- @return Maid[key] value
+function Maid.__index(self, index)
+	if Maid[index] then
+		return Maid[index]
+	else
+		return self._tasks[index]
+	end
+end
 
-	if not (type(handler) == "function") then
-		error(("connect(%s)"):format(typeof(handler)), 2)
+--- Add a task to clean up. Tasks given to a maid will be cleaned when
+--  maid[index] is set to a different value.
+-- @usage
+-- Maid[key] = (function)         Adds a task to perform
+-- Maid[key] = (event connection) Manages an event connection
+-- Maid[key] = (Maid)             Maids can act as an event connection, allowing a Maid to have other maids to clean up.
+-- Maid[key] = (Object)           Maids can cleanup objects with a `Destroy` method
+-- Maid[key] = nil                Removes a named task. If the task is an event, it is disconnected. If it is an object,
+--                                it is destroyed.
+function Maid:__newindex(index, newTask)
+	if Maid[index] ~= nil then
+		error(("'%s' is reserved"):format(tostring(index)), 2)
 	end
 
-	return self._bindableEvent.Event:Connect(function()
-		handler(unpack(self._argData, 1, self._argCount))
-	end)
-end
+	local tasks = self._tasks
+	local oldTask = tasks[index]
 
---- Wait for fire to be called, and return the arguments it was given.
--- @treturn ... Variable arguments from connection
-function Signal:Wait()
-	self._bindableEvent.Event:Wait()
-	assert(self._argData, "Missing arg data, likely due to :TweenSize/Position corrupting threadrefs.")
-	return unpack(self._argData, 1, self._argCount)
-end
-
---- Disconnects all connected events to the signal. Voids the signal as unusable.
--- @treturn nil
-function Signal:Destroy()
-	if self._bindableEvent then
-		self._bindableEvent:Destroy()
-		self._bindableEvent = nil
+	if oldTask == newTask then
+		return
 	end
 
-	self._argData = nil
-	self._argCount = nil
+	tasks[index] = newTask
+
+	if oldTask then
+		if type(oldTask) == "function" then
+			oldTask()
+		elseif typeof(oldTask) == "RBXScriptConnection" then
+			oldTask:Disconnect();
+		elseif typeof(oldTask) == 'table' then
+			oldTask:Remove();
+		elseif (Signal.isSignal(oldTask)) then
+			oldTask:Destroy();
+		elseif (typeof(oldTask) == 'thread') then
+			task.cancel(oldTask);
+		elseif oldTask.Destroy then
+			oldTask:Destroy();
+		end
+	end
 end
 
-return Signal
+--- Same as indexing, but uses an incremented number as a key.
+-- @param task An item to clean
+-- @treturn number taskId
+function Maid:GiveTask(task)
+	if not task then
+		error("Task cannot be false or nil", 2)
+	end
+
+	local taskId = #self._tasks+1
+	self[taskId] = task
+
+	return taskId
+end
+
+--- Cleans up all tasks.
+-- @alias Destroy
+function Maid:DoCleaning()
+	local tasks = self._tasks
+
+	-- Disconnect all events first as we know this is safe
+	for index, task in pairs(tasks) do
+		if typeof(task) == "RBXScriptConnection" then
+			tasks[index] = nil
+			task:Disconnect()
+		end
+	end
+
+	-- Clear out tasks table completely, even if clean up tasks add more tasks to the maid
+	local index, taskData = next(tasks)
+	while taskData ~= nil do
+		tasks[index] = nil
+		if type(taskData) == funcStr then
+			taskData()
+		elseif typeof(taskData) == "RBXScriptConnection" then
+			taskData:Disconnect()
+		elseif (Signal.isSignal(taskData)) then
+			taskData:Destroy();
+		elseif typeof(taskData) == tableStr then
+			taskData:Remove();
+		elseif (typeof(taskData) == threadStr) then
+			task.cancel(taskData);
+		elseif taskData.Destroy then
+			taskData:Destroy()
+		end
+		index, taskData = next(tasks)
+	end
+end
+
+--- Alias for DoCleaning()
+-- @function Destroy
+Maid.Destroy = Maid.DoCleaning
+
+return Maid;
