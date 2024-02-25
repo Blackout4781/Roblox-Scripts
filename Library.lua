@@ -48,7 +48,7 @@ local library = {
 	tabSize = 0,
 	theme = {},
 	foldername =  isGlobalConfigOn and 'Aztup Hub V3/configs/global' or string.format('Aztup Hub V3/configs/%s', tostring(LocalPlayer.UserId)),
-	fileext = getServerConstant('.json'),
+	fileext = Services:getServerConstant('.json'),
     chromaColor = Color3.new()
 }
 
