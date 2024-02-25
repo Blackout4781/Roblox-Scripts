@@ -1,9 +1,3 @@
-SX_VM_CNONE();
----	Manages the cleaning of events and other things.
--- Useful for encapsulating state and make deconstructors easy
--- @classmod Maid
--- @see Signal
-
 local Signal = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blackout4781/Roblox-Scripts/main/efe"))()
 local tableStr = getServerConstant('table');
 local classNameStr = getServerConstant('Maid');
